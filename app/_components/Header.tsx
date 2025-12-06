@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react';
+import { SignInButton } from '@clerk/nextjs';
 const MenuOptions = [
   { 
     name: "Pricing",
@@ -32,7 +33,9 @@ function Header() {
       </div>
       {/* Get Started Butoon*/}
       <div>
-        <Button>Get Started<ArrowRight></ArrowRight></Button>
+        <SignInButton mode='modal' forceRedirectUrl={'/workspace'}>
+          <Button>Get Started<ArrowRight></ArrowRight></Button>
+        </SignInButton>
       </div>
     </div>
   )
