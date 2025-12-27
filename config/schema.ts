@@ -20,12 +20,16 @@ export const projectTable = pgTable('projects', {
 export const frameTable = pgTable('frames',{
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   frameId:varchar(),
-  projectId:varchar().references(() => projectTable.projectId)
+  designCode:varchar(),
+  projectId:varchar().references(() => projectTable.projectId),
+  createdOn:timestamp().defaultNow(),
+
 });
 
 export const chartTable = pgTable('charts',{
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   chatMessage:json(),
+  frameId:varchar().references(() => frameTable.frameId),
   createdBy:varchar().references(() => usersTable.email),
   createdOn:timestamp().defaultNow(),
 });
